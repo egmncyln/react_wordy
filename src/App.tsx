@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import Layout from './components/Layout';
 import Spinner from './components/Spinner';
 import UserSelection from './components/UserSelection';
 import { User } from './models/user';
@@ -18,24 +19,23 @@ function App() {
               let userList: User[] = [];
               let usersObj = response.data;
               for (let usersObjId in usersObj) {
-                let user = new User();
-                user.userId = usersObjId;
-                user.userName = usersObj[usersObjId].userName;
-                userList.push(user);
+                userList.push({
+                  userId: usersObjId,
+                  userName: usersObj[usersObjId].userName
+                });
               }
               setUsers(userList);
             }
-          })
-          .catch(error => console.log(error));
+          }).catch(() => null);
       }
       getUsers();
     }
   }, [])
 
   return (
-    <div className="container p-5 d-flex justify-content-center align-items-center">
+    <Layout title="Welcome to Wordy !">
       {users && users.length > 0 ? <UserSelection users={users} /> : <Spinner />}
-    </div>
+    </Layout>
   );
 }
 

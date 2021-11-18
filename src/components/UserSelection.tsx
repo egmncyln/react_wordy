@@ -1,25 +1,26 @@
-import React, { ChangeEvent } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { KeyValue } from '../models/key.value';
 import { User } from '../models/user';
-import Wordy from './Wordy';
+import Dropdown from './Dropdown';
 
 function UserSelection(props: any) {
+    let navigate = useNavigate();
     let users: User[] = props.users;
-    let onUserSelected = (e: any) => {
-        e.preventDefault();
-        if (e.target.value) {
-            let userId: string = e.target.value;
-            console.log(userId);
-            // TODO: route to wordy comp with userId
-        }
-    }
+
     return (
-        <div>
-            <h1>Select a User !</h1>
-            <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example" onChange={(e) => onUserSelected(e)}>
-                <option value="">Users</option>
-                {users.map(user => <option key={user.userId} value={user.userId}>{user.userName}</option>)}
-            </select>
-        </div>
+        <React.Fragment>
+            <Dropdown
+                title={`Select a User !`}
+                defaultOption={`Users`}
+                datas={(() => {
+                    let datas: KeyValue[] = [];
+                    users.forEach(user => datas.push({ key: user.userId, value: user.userName }));
+                    return datas;
+                })()}
+                onSelectionChange={(userId: string) => navigate(`/wordy/${userId}`)}
+            />
+        </React.Fragment>
     )
 }
 

@@ -9,7 +9,7 @@
                 xhr.onload = result => result && result.target && result.target.response ? resolve(JSON.parse(result.target.response)) : resolve(null);
                 xhr.onerror = error => reject(error);
                 xhr.send();
-            }).then(apiKeys => apiKeys).catch(error => console.log(error));
+            }).then(apiKeys => apiKeys).catch(() => null);
         };
 
         let getRandomIndex = max => {
