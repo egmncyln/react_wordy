@@ -1,12 +1,15 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { KeyValue } from '../models/key.value';
 import { WordList } from '../models/word.list';
 import Dropdown from './Dropdown';
 import Layout from './Layout';
 
 function Wordy() {
-    let { userId: string } = useParams();
+    let navigate = useNavigate();
+    let { userId } = useParams();
+
+    if (!userId) navigate(`/`);
     let wordList: WordList[] = [];
 
     return (

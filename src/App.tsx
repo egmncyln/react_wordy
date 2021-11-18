@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Dropdown from './components/Dropdown';
 import Layout from './components/Layout';
 import Spinner from './components/Spinner';
-import UserSelection from './components/UserSelection';
+import { KeyValue } from './models/key.value';
 import { User } from './models/user';
 
 function App() {
-  const windowObj: any = window;
-  const usersDefaultState: User[] = [];
+  let windowObj: any = window;
+  let usersDefaultState: User[] = [];
+  let navigate = useNavigate();
   let [users, setUsers] = useState(usersDefaultState);
 
   useEffect(() => {
@@ -34,7 +37,19 @@ function App() {
 
   return (
     <Layout title="Welcome to Wordy !">
-      {users && users.length > 0 ? <UserSelection users={users} /> : <Spinner />}
+      {users && users.length > 0
+        ? <Dropdown
+          title={`Select a User !`}
+          defaultOption={`Users`}
+          datas={(() => {
+            let datas: KeyValue[] = [];
+            users.forEach(user => datas.push({ key: user.userId, value: user.userName }));
+            return datas;
+          })()}
+          onSelectionChange={(userId: string) => navigate(`/wordy/${userId}`)}
+        />
+        : <Spinner />
+      }
     </Layout>
   );
 }
