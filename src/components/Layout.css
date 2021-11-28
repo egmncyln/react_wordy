@@ -1,0 +1,7 @@
+.wordy-layout {
+    max-width: 480px;
+}
+
+.wordy-layout.wordy-app {
+    max-width: 768px;
+}

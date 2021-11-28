@@ -13,7 +13,7 @@ function Wordy() {
     let wordList: WordList[] = [];
 
     return (
-        <Layout title={`Wordy is the best app in the world !`}>
+        <Layout title={`Wordy is the best app in the world !`} layoutClasses="wordy-app">
             <Dropdown
                 title={`Select a List !`}
                 defaultOption={`Word Lists`}
