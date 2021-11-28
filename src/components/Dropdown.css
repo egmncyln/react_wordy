@@ -1,0 +1,9 @@
+.wordy-dropdown>select {
+    text-align: center;
+    text-align-last: center;
+}
+
+.wordy-dropdown>div {
+    min-height: 30px;
+}
+
