@@ -33,7 +33,7 @@ function App() {
       }
       getUsers();
     }
-  }, [])
+  }, [windowObj.BASE_URI])
 
   return (
     <Layout title="Welcome to Wordy !">
