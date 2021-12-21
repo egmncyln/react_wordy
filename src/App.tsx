@@ -4,8 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import Dropdown from './components/Dropdown';
 import Layout from './components/Layout';
 import Spinner from './components/Spinner';
-import { KeyValue } from './models/key.value';
-import { User } from './models/user';
+import { KeyValue } from './models/key-value.model';
+import { User } from './models/user.model';
 
 function App() {
   let windowObj: any = window;

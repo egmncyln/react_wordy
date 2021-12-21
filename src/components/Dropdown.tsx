@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { useNavigate } from 'react-router';
-import { KeyValue } from '../models/key.value';
+import { KeyValue } from '../models/key-value.model';
 import CrudIcons from './CrudIcons';
 import './Dropdown.css';
 

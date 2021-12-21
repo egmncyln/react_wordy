@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { KeyValue } from '../models/key.value';
-import { WordList } from '../models/word.list';
+import { KeyValue } from '../models/key-value.model';
+import { WordList } from '../models/word-list.model';
 import Dropdown from './Dropdown';
 import Layout from './Layout';
 
