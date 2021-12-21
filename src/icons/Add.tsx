@@ -1,4 +1,5 @@
 import React from 'react';
+import './Icon.css';
 
 function Add(props: any) {
     return (

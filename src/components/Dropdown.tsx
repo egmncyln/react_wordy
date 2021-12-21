@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { KeyValue } from '../models/key-value.model';
 import CrudIcons from './CrudIcons';
@@ -6,20 +6,31 @@ import './Dropdown.css';
 
 function Dropdown(props: any) {
     let navigate = useNavigate();
-    let { title, defaultOption, datas } = props;
+    let { datas } = props;
+
+    //#region Component validation
+    useEffect(() => {
+        if (!datas) navigate(`/`);
+    }, [datas, navigate]);
+
+    if (!datas) return null;
+    //#endregion
+
+    let { title, defaultOption, showCrudIcons = false } = props;
     defaultOption = !!defaultOption ? defaultOption : `Select !`;
-    if (!datas) navigate(`/`);
 
     return (
         <div className="w-100 d-flex flex-column wordy-dropdown">
             <div className="w-100 d-flex justify-content-between align-items-center">
                 {title && <h5>{title}</h5>}
-                <CrudIcons
-                    onAddClicked={() => console.log("onAddClicked")}
-                    onEditClicked={() => console.log("onEditClicked")}
-                    onDeleteClicked={() => console.log("onDeleteClicked")}
-                    onRefreshClicked={() => console.log("onRefreshClicked")}
-                />
+                {showCrudIcons
+                    ? <CrudIcons
+                        disableEDButtons={props.disableEDButtons}
+                        onAddClicked={() => props.onAddClicked()}
+                        onEditClicked={() => props.onAddClicked()}
+                        onDeleteClicked={() => props.onAddClicked()} />
+                    : null
+                }
             </div>
             <select className="form-select form-select-lg mb-3" aria-label=".form-select-lg example"
                 onChange={event => event.target.value ? props.onSelectionChange(event.target.value) : null}>

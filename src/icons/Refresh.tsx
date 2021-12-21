@@ -1,4 +1,5 @@
 import React from 'react'
+import './Icon.css';
 
 function Refresh(props: any) {
     return (

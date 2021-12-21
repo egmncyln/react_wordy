@@ -1,0 +1,9 @@
+svg:hover {
+    cursor: pointer;
+    fill: blue;
+}
+
+svg.disabled {
+    opacity: 20%;
+    pointer-events: none;
+}

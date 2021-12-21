@@ -5,7 +5,3 @@
 .wordy-crudicons>svg:first-child {
     margin-left: 0;
 }
-
-svg:hover {
-    fill: blue;
-}
