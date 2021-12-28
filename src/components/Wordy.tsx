@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { ModalTypes } from '../enums/modal-types.enum';
 import { KeyValue } from '../models/key-value.model';
-import { WordList } from '../models/word-list.model';
+import { List } from '../models/list.model';
+import { ModalOutput } from '../models/modal-output.model';
 import Dropdown from './Dropdown';
 import Layout from './Layout';
 import WordyModal from './WordyModal';
@@ -19,8 +21,7 @@ function Wordy() {
     if (!userId) return null;
     //#endregion
 
-
-    let wordList: WordList[] = [];
+    let wordList: List[] = [];
 
     let getDropdownDatas = () => {
         let datas: KeyValue[] = [];
@@ -28,8 +29,16 @@ function Wordy() {
         return datas;
     }
 
-    let addWordList = () => {
-        console.log(`add word list`);
+    let onModalCreate = (output: ModalOutput) => {
+        if (output.type === ModalTypes.User) {
+
+        }
+        else if (output.type === ModalTypes.Word) {
+
+        }
+        else if (output.type === ModalTypes.List) {
+
+        }
     }
 
     return (
@@ -45,7 +54,7 @@ function Wordy() {
                 onDeleteClicked={() => console.log(`Wordy onDeleteClicked`)}
                 onSelectionChange={(userId: string) => console.log(`get words with userId: `, userId)}
             />
-            <WordyModal showModal={showModal} onClose={() => setShowModal(false)} />
+            <WordyModal show={showModal} type={ModalTypes.List} onClose={() => setShowModal(false)} onCreate={onModalCreate} />
         </Layout>
     )
 }

@@ -1,13 +1,61 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, FormControl, Modal } from 'react-bootstrap';
+import { ModalTypes } from '../enums/modal-types.enum';
+import { List } from '../models/list.model';
+import { ModalOutput } from '../models/modal-output.model';
 
 function WordyModal(props: any) {
-    const [show, setShow] = useState(false);
+    let [show, setShow] = useState(false);
+    let _listName: string;
 
-    useEffect(
-        () => props.showModal ? setShow(true) : setShow(false),
-        [props.showModal]
-    )
+    useEffect(() => props.show ? setShow(true) : setShow(false), [props.show])
+
+    let getModalTitle = () => {
+        if (props.type === ModalTypes.User) {
+            return "Create a new user";
+        }
+        else if (props.type === ModalTypes.Word) {
+            return "Create a new word";
+        }
+        else if (props.type === ModalTypes.List) {
+            return "Create a new list";
+        }
+    }
+
+    let getModalBody = () => {
+        if (props.type === ModalTypes.User) {
+
+        }
+        else if (props.type === ModalTypes.Word) {
+
+        }
+        else if (props.type === ModalTypes.List) {
+            return (
+                <FormControl
+                    placeholder="Enter a list name"
+                    onKeyPress={(e: any) => e.which === 32 || e.which === 95 ? e.preventDefault() : null}
+                    onChange={(e: any) => _listName = e.target.value}
+                />
+            );
+        }
+    }
+
+    let onCreate = () => {
+        if (props.type === ModalTypes.User) {
+
+        }
+        else if (props.type === ModalTypes.Word) {
+
+        }
+        else if (props.type === ModalTypes.List) {
+            if (_listName) {
+                let data: List = { userId: '', listName: _listName }
+                let output: ModalOutput = { type: props.type, data: data };
+                props.onCreate(output);
+                setShow(false);
+            }
+        }
+    }
 
     return (
         <Modal
@@ -15,19 +63,15 @@ function WordyModal(props: any) {
             onHide={props.onClose}
             backdrop="static"
             keyboard={false}
+            centered
         >
             <Modal.Header closeButton>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>{getModalTitle()}</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                I will not close if you click outside me. Don't even try to press
-                escape key.
-            </Modal.Body>
+            <Modal.Body>{getModalBody()}</Modal.Body>
             <Modal.Footer>
-                <Button variant="secondary" onClick={props.onClose}>
-                    Close
-                </Button>
-                <Button variant="primary">Understood</Button>
+                <Button variant="secondary" onClick={props.onClose}>Close</Button>
+                <Button variant="primary" onClick={onCreate}>Create</Button>
             </Modal.Footer>
         </Modal>
     );
