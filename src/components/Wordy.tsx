@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { KeyValue } from '../models/key-value.model';
 import { WordList } from '../models/word-list.model';
 import Dropdown from './Dropdown';
 import Layout from './Layout';
+import WordyModal from './WordyModal';
 
 function Wordy() {
+    let [showModal, setShowModal] = useState(false);
     let navigate = useNavigate();
     let { userId } = useParams();
 
@@ -16,6 +18,7 @@ function Wordy() {
 
     if (!userId) return null;
     //#endregion
+
 
     let wordList: WordList[] = [];
 
@@ -37,11 +40,12 @@ function Wordy() {
                 datas={getDropdownDatas()}
                 showCrudIcons={true}
                 disableEDButtons={!wordList || wordList.length < 1}
-                onAddClicked={() => addWordList()}
+                onAddClicked={() => setShowModal(true)}
                 onEditClicked={() => console.log(`Wordy onEditClicked`)}
                 onDeleteClicked={() => console.log(`Wordy onDeleteClicked`)}
                 onSelectionChange={(userId: string) => console.log(`get words with userId: `, userId)}
             />
+            <WordyModal showModal={showModal} onClose={() => setShowModal(false)} />
         </Layout>
     )
 }
