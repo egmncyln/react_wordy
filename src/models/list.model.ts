@@ -1,4 +1,4 @@
-export interface WordList {
+export interface List {
     userId: string;
     listName: string;
 }
