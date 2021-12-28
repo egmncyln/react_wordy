@@ -5,6 +5,8 @@ import reportWebVitals from './reportWebVitals';
 import { Route, Routes } from 'react-router';
 import Wordy from './components/Wordy';
 import { BrowserRouter } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 ReactDOM.render(
   <BrowserRouter>
