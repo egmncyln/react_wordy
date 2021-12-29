@@ -24,7 +24,7 @@ function App() {
               for (let usersObjId in usersObj) {
                 userList.push({
                   userId: usersObjId,
-                  userName: usersObj[usersObjId].userName
+                  userName: usersObj[usersObjId]
                 });
               }
               setUsers(userList);
