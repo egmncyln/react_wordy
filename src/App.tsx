@@ -35,17 +35,19 @@ function App() {
     }
   }, [windowObj.BASE_URI])
 
+  let getDropdownDatas = () => {
+    let datas: KeyValue[] = [];
+    users.forEach(user => datas.push({ key: user.userId, value: user.userName }));
+    return datas;
+  }
+
   return (
     <Layout title="Welcome to Wordy !">
       {users && users.length > 0
         ? <Dropdown
           title={`Select a User !`}
           defaultOption={`Users`}
-          datas={(() => {
-            let datas: KeyValue[] = [];
-            users.forEach(user => datas.push({ key: user.userId, value: user.userName }));
-            return datas;
-          })()}
+          datas={getDropdownDatas()}
           onSelectionChange={(userId: string) => navigate(`/wordy/${userId}`)}
         />
         : <Spinner />
