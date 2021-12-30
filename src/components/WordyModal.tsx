@@ -49,7 +49,7 @@ function WordyModal(props: any) {
         }
         else if (props.type === ModalTypes.List) {
             if (_listName) {
-                let data: List = { userId: '', listName: _listName }
+                let data: Object = { listName: _listName }
                 let output: ModalOutput = { type: props.type, data: data };
                 props.onCreate(output);
                 setShow(false);

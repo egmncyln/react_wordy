@@ -24,10 +24,11 @@ function App() {
               for (let usersObjId in usersObj) {
                 userList.push({
                   userId: usersObjId,
-                  userName: usersObj[usersObjId]
+                  userName: usersObj[usersObjId].userName
                 });
               }
               setUsers(userList);
+              windowObj.users = userList;
             }
           }).catch(() => null);
       }

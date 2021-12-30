@@ -20,7 +20,7 @@
         let getRandomApiKey = apiKeyObjs => {
             let apiKeys = [];
             for (let objId in apiKeyObjs) {
-                apiKeys.push(apiKeyObjs[objId]);
+                apiKeys.push(apiKeyObjs[objId].apiKey);
             }
             if (apiKeys && apiKeys.length > 0) {
                 return apiKeys[getRandomIndex(apiKeys.length)];
