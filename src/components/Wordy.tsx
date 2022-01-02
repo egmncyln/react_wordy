@@ -31,8 +31,8 @@ function Wordy() {
     let [lists, setLists] = useState(usersDefaultState);
     let [disableEDButtons, setDisableEDButtons] = useState(true);
 
-    let getListsByUserId = () => {
-        axios.get(`${windowObj.BASE_URI}/${PREFIX_LIST}_${userId}.json`)
+    let getListsByUserId = async () => {
+        await axios.get(`${windowObj.BASE_URI}/${PREFIX_LIST}${userId}.json`)
             .then(response => {
                 if (response && response.data) {
                     let wordList: List[] = [];
@@ -81,7 +81,7 @@ function Wordy() {
 
         }
         else if (output.type === ModalTypes.List) {
-            await axios.post(`${windowObj.BASE_URI}/${PREFIX_LIST}_${userId}.json`, output.data)
+            await axios.post(`${windowObj.BASE_URI}/${PREFIX_LIST}${userId}.json`, output.data)
                 .then(response => getListsByUserId())
                 .catch(error => null)
         }

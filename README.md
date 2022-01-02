@@ -1,5 +1,3 @@
-# Application Information
+# DEPRECATED
 
-Wordy is an app to study english words !
-
-
+This project is deprecated
